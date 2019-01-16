@@ -1,13 +1,13 @@
-function Particle(x=random(width*1/3, width*2/3), y=height, isChild=false){
+function Particle(x = random(80, window.innerWidth - 80), y = window.innerHeight, isChild=false) {
     this.pos = createVector(x, y);
     this.acc = createVector(0, 0);
     this.alive = true;
     this.isChild = isChild;
-    this.col = color(random(50,255), random(50,255), random(50,255), 255);
+    this.col = color(random(25, 255), random(25, 255), random(25, 255), 255);
     if (this.isChild){
         this.vel = createVector(random(-4, 4), random(-6, 0.5));
     } else {
-        this.vel = createVector(random(-1, 1), -random(13, 16));
+        this.vel = createVector(random(-1, 1), -random(12, 20));
     }
 
     this.applyForce = function(force) {
@@ -25,6 +25,9 @@ function Particle(x=random(width*1/3, width*2/3), y=height, isChild=false){
                 children.push(new Particle(this.pos.x, this.pos.y, true));
             }
             this.alive = false;
+            fireworks.push(new Particle());
+            
+            background(random()*255, random()*255, random()*255, 127);
             return children; 
 
         } else if (this.pos.y > height + 10){
