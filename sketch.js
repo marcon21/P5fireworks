@@ -1,9 +1,7 @@
-var firework; 
 var gravity;
 var fireworks = [];
-var img;
 
-var FRAMERATE = 144;
+var FRAMERATE = 60;
 
 function setup() {
   var fireworksCanvas = createCanvas(window.innerWidth, window.innerHeight);
@@ -24,12 +22,8 @@ function draw() {
 
   for(var i = 0; i < fireworks.length; i++) {
     fireworks[i].applyForce(gravity);
-    children = fireworks[i].update();
+    fireworks[i].update();
     fireworks[i].show();
-
-    for(var j = 0; j < children.length; j++){
-      fireworks.push(children[j]);
-    }
 
     if (!fireworks[i].alive) {
       fireworks.splice(i, 1);
