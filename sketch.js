@@ -3,12 +3,16 @@ var gravity;
 var fireworks = [];
 var img;
 
+var FRAMERATE = 144;
+
 function setup() {
-  createCanvas(800, 800);
+  var fireworksCanvas = createCanvas(window.innerWidth, window.innerHeight);
   gravity = createVector(0, 0.2);
-  background(0);
   noStroke();
-  fireworks.push(new Particle());
+  for(var i = 0; i < 2; i++) {
+    fireworks.push(new Particle());
+  }  
+  frameRate(FRAMERATE);
 }
 
 function mousePressed(){
@@ -16,11 +20,7 @@ function mousePressed(){
 }
 
 function draw() {
-  background(0,0,0,20);
-
-  if (frameCount % 90 == 0){
-    fireworks.push(new Particle());
-  }
+  background(0,0,0,15);
 
   for(var i = 0; i < fireworks.length; i++) {
     fireworks[i].applyForce(gravity);
